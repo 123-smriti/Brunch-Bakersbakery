@@ -31,10 +31,9 @@ export default function ValueProps({ showCta = true, showValues = false }) {
       <div className="ourstory-in">
         <div className="ourstory-copy">
           <p className="ourstory-eyebrow">Our Story</p>
-          <h2 id="story-title">Born From A Love For Chocolate</h2>
+          <h2 id="story-title">Born From A Love For Baking</h2>
           <p>
-            At Cocoa Haus, we believe chocolate is more than a flavour — it's an emotion. Our journey began with a simple dream:
-            to create the most delicious, handcrafted brownies using the finest ingredients, made with love.
+           Brunch Baker started as a tiny neighbourhood bakery with one oven and a love for chocolate. Today we bake cakes, brownies, pastries and savouries fresh every day.
           </p>
           {showCta && (
             <Link to="/about" className="ourstory-btn">
