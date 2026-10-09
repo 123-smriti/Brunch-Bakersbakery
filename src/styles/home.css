@@ -1,0 +1,97 @@
+/* ===== Homepage sections below the hero: one rhythm, one palette ===== */
+.sec{padding:var(--section-y) var(--gutter);background:#fff;color:var(--cocoa);font-family:var(--font-body)}
+.sec.mint{background:var(--mint-white)}
+.sec-in{max-width:1120px;margin:0 auto}
+.sec-head{max-width:640px;margin:0 auto clamp(32px,5vw,56px);text-align:center}
+.sec .sec-head h2,.sec h2{margin:0}
+.sec-lead{margin:14px 0 0;font-size:var(--fs-body);line-height:1.6;color:var(--muted)}
+
+
+/* --- promos: quiet offer cards --- */
+.promo-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 20px;margin:0 -4px;scrollbar-width:none}
+.promo-track::-webkit-scrollbar{display:none}
+.promo{
+  flex:0 0 calc((100% - 40px)/3);scroll-snap-align:start;display:flex;flex-direction:column;align-items:flex-start;
+  padding:28px;border-radius:24px;background:#fff;box-shadow:0 14px 30px -24px rgba(42,28,23,.4);
+}
+.promo h3{margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(28px,2.8vw,36px);line-height:1.1;color:var(--cocoa)}
+.promo p{margin:6px 0 22px;font-size:var(--fs-small);color:var(--muted)}
+.promo button{
+  margin-top:auto;height:44px;padding:0 22px;border-radius:999px;border:1.5px solid var(--cocoa);background:transparent;color:var(--cocoa);
+  font-family:var(--font-body);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  transition:background-color .25s ease,color .25s ease;
+}
+.promo button:hover{background:var(--cocoa);color:var(--mint-white)}
+.promo-dots{display:flex;justify-content:center;gap:10px;margin-top:4px}
+.promo-dots button{position:relative;width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(42,28,23,.22);transition:background-color .25s ease}
+.promo-dots button::before{content:"";position:absolute;inset:-18px -4px}
+.promo-dots button.on{background:var(--cocoa)}
+
+/* --- testimonials --- */
+.testi blockquote{max-width:760px;margin:0 auto;text-align:center;font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.5vw,30px);line-height:1.35;color:var(--cocoa)}
+.testi cite{display:block;margin-top:18px;font-family:var(--font-body);font-size:var(--fs-small);font-weight:500;font-style:normal;color:var(--muted)}
+.testi-dots{display:flex;justify-content:center;gap:10px;margin-top:28px}
+.testi-dots button{position:relative;width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(42,28,23,.22);transition:background-color .25s ease}
+.testi-dots button::before{content:"";position:absolute;inset:-18px -4px}
+.testi-dots button.on{background:var(--cocoa)}
+
+/* --- numbers: open row, no boxes --- */
+.numbers-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.num-card{padding:8px 16px;text-align:center}
+.num-card+.num-card{border-left:1px solid var(--line)}
+.num-card b{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(36px,4.4vw,56px);line-height:1.1;font-variant-numeric:tabular-nums;color:var(--cocoa)}
+.num-card b::after{content:"";display:block;width:28px;height:2px;margin:12px auto 10px;border-radius:2px;background:var(--pistachio)}
+.num-card span{display:block;font-size:var(--fs-small);font-weight:500;color:var(--muted)}
+
+/* --- franchise CTA: the one framed panel on the page --- */
+.fstrip-panel{
+  display:flex;align-items:center;justify-content:space-between;gap:clamp(24px,4vw,56px);flex-wrap:wrap;
+  padding:clamp(32px,5vw,64px);border-radius:28px;background:var(--mint-white);
+}
+.fstrip-panel h2{margin:0 0 10px;text-align:left}
+.fstrip-panel p{margin:0;max-width:44ch;font-size:var(--fs-body);color:var(--muted)}
+.fstrip-panel .btn{flex:none}
+
+/* --- find a store --- */
+.findstore .sec-in{max-width:640px;text-align:center}
+.findstore h2{margin:0 0 12px}
+.findstore p{margin:0 0 28px;font-size:var(--fs-body);color:var(--muted)}
+
+/* --- footer --- */
+.site-foot{background:#fff;border-top:1px solid var(--line);color:var(--cocoa);font-family:var(--font-body);font-size:var(--fs-small)}
+.foot-body{padding:clamp(48px,6vw,72px) var(--gutter) 28px}
+.foot-in{max-width:1120px;margin:0 auto}
+.foot-main{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.foot-brand img{display:block;height:104px;width:auto}
+.foot-brand p{margin:14px 0 18px;font-size:14px;color:var(--muted)}
+.socials{display:flex;gap:6px;margin-left:-8px}
+.socials a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;color:var(--cocoa);transition:color .25s ease,background-color .25s ease}
+.socials a:hover{color:var(--raspberry);background:var(--mint-white)}
+.socials svg{width:22px;height:22px}
+.foot-cols{display:grid;grid-template-columns:repeat(3,auto);gap:clamp(28px,5vw,72px)}
+.foot-cols h3{margin:0 0 12px;font-family:var(--font-body);font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cocoa)}
+.foot-cols a{display:block;padding:10px 0;color:var(--muted);transition:color .2s ease}
+.foot-cols a:hover{color:var(--raspberry)}
+.cities{margin:44px 0 0;padding-top:24px;border-top:1px solid var(--line);font-size:14px;line-height:1.7;color:var(--muted)}
+.cities b{color:var(--cocoa);font-weight:600}
+
+/* --- tablet / phone --- */
+@media (max-width:900px){
+  .promo{flex-basis:calc((100% - 20px)/2)}
+  .numbers-grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .num-card:nth-child(3){border-left:0}
+  .foot-cols{grid-template-columns:repeat(2,auto)}
+}
+@media (max-width:560px){
+  .promo{flex-basis:86%;padding:24px}
+  .fstrip-panel{border-radius:22px}
+  .fstrip-panel .btn{width:100%}
+  .findstore .btn{width:100%}
+  .foot-main{flex-direction:column;gap:32px}
+}
+@media (max-width:380px){
+  .foot-cols{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .promo button,.promo-dots button,.testi-dots button,.socials a,.foot-cols a{transition:none}
+}

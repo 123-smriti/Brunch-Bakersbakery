@@ -1,0 +1,115 @@
+/* ===== Hero: full-width photo carousel with the copy on the left ===== */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.hero{
+  --gutter:clamp(16px,3.2vw,48px);
+  position:relative;overflow:hidden;background:var(--bb-mint);color:var(--bb-cocoa);font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;
+}
+.hero a{text-decoration:none}
+.hero :focus-visible{outline:2px solid var(--bb-cocoa);outline-offset:3px}
+
+.hero-inner{
+  position:relative;z-index:2;pointer-events:none;
+  display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);align-items:center;column-gap:clamp(32px,4.4vw,80px);
+  max-width:1520px;margin:0 auto;box-sizing:border-box;
+  min-height:clamp(560px,56vw,min(900px,calc(100svh - 102px)));   /* photos are 16:9, so height follows width until the viewport runs out */
+  padding:clamp(40px,6vh,72px) var(--gutter) clamp(72px,9vh,96px);
+}
+.hero-copy{pointer-events:auto}
+
+/* copy */
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:12px;margin:0 0 20px;line-height:1.2;
+  font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(42,28,23,.75);
+}
+.hero-eyebrow::before{content:"";width:32px;height:2px;border-radius:2px;background:var(--bb-pistachio)}
+.hero-title{
+  margin:0 0 20px -.03em;color:var(--bb-cocoa);   /* -.03em: optical left edge flush with the eyebrow rule */
+  font-family:var(--font-display);font-weight:700;font-size:clamp(44px,4.4vw,68px);line-height:1.04;letter-spacing:-.025em;font-optical-sizing:auto;
+}
+.hero-sub{max-width:36ch;margin:0 0 32px;font-size:clamp(16px,1.35vw,20px);line-height:1.65;color:rgba(42,28,23,.8)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{margin:24px 0 0;line-height:1.4;font-size:14px;font-weight:500;letter-spacing:.03em;color:rgba(42,28,23,.6)}
+
+.hero-btn{
+  display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 clamp(20px,2vw,30px);box-sizing:border-box;line-height:1;
+  border:1.5px solid var(--bb-cocoa);border-radius:999px;background:transparent;color:var(--bb-cocoa);cursor:pointer;
+  font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+.hero-btn:active{transform:translateY(0);box-shadow:none}
+.hero-btn.primary{background:var(--bb-rasp);border-color:var(--bb-rasp);color:#fff}
+.hero-btn.primary:hover{background:var(--bb-rasp-deep);border-color:var(--bb-rasp-deep);transform:translateY(-1px);box-shadow:0 10px 20px -12px rgba(184,50,90,.7)}
+.hero-btn.primary:focus-visible{outline-offset:3px}
+.hero-btn.outline:hover{background:var(--bb-cocoa);color:var(--bb-mint)}
+
+
+@media (min-width:861px){
+  .hero-eyebrow,.hero-title,.hero-sub,.hero-meta,.hero-btn.outline{transition:color .6s ease,border-color .6s ease,background-color .2s ease}
+  .hero.is-dark .hero-eyebrow,.hero.is-dark .hero-title,.hero.is-dark .hero-sub,.hero.is-dark .hero-meta{color:var(--bb-mint)}
+  .hero.is-dark .hero-meta{color:rgba(243,246,236,.8)}
+  .hero.is-dark .hero-btn.outline{border-color:var(--bb-mint);color:var(--bb-mint)}
+  .hero.is-dark .hero-btn.outline:hover{background:var(--bb-mint);color:var(--bb-cocoa)}
+  .hero.is-dark :focus-visible{outline-color:var(--bb-mint)}
+}
+
+/* photos: full-bleed behind the copy */
+.hero-bg{--px:0;--py:0;position:absolute;inset:0;overflow:hidden;background:var(--bb-mint)}
+.hero-slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility 0s linear .8s}
+.hero-slide.is-active{opacity:1;visibility:visible;transition:opacity .8s ease,visibility 0s}
+/* oversized by 14px a side so the pointer shift never shows an edge */
+.hero-shift{
+  position:absolute;inset:-14px;
+  transform:translate3d(calc(var(--px)*1px),calc(var(--py)*1px),0);transition:transform .3s ease-out;will-change:transform;
+}
+/* every photo has its cake on the left, so it is mirrored: cake right, empty space for the copy left */
+.hero-img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--pos);transform:scaleX(-1);user-select:none}
+
+/* slide label + bars, bottom-left, lined up with the copy */
+.hero-controls{
+  position:absolute;left:max(var(--gutter),calc((100% - 1520px)/2 + var(--gutter)));bottom:clamp(16px,2.4vw,32px);z-index:3;
+  display:flex;align-items:center;gap:16px;height:42px;padding:0 18px;border-radius:999px;background:rgba(255,255,255,.95);color:var(--bb-cocoa);
+  box-shadow:0 10px 24px -14px rgba(42,28,23,.4);font-size:14px;font-weight:600;letter-spacing:.01em;
+}
+.hero-bars{display:flex;align-items:center;gap:6px}
+.hero-bars button{
+  position:relative;width:22px;height:3px;padding:0;border:0;border-radius:3px;background:rgba(42,28,23,.2);
+  cursor:pointer;transition:background-color .3s ease,width .3s ease;
+}
+.hero-bars button::before{content:"";position:absolute;inset:-20px -3px}   /* 44px tap target */
+.hero-bars button:hover{background:rgba(42,28,23,.5)}
+.hero-bars button.on{width:32px;background:var(--bb-cocoa)}
+.hero-controls :focus-visible{outline-color:var(--bb-cocoa)}
+
+/* narrow two-column widths: the longer second label no longer fits beside the first, so stack them at equal width */
+@media (min-width:861px) and (max-width:1160px){
+  .hero-ctas{display:grid;grid-template-columns:max-content}
+}
+
+/* tablet + phone: copy first on mint, then the photo edge to edge */
+@media (max-width:860px){
+  .hero-inner{grid-template-columns:1fr;min-height:0;pointer-events:auto;padding:28px var(--gutter) 28px}
+  .hero-title{font-size:clamp(42px,12vw,72px);margin-bottom:18px}
+  .hero-eyebrow{margin-bottom:14px}
+  .hero-sub{margin-bottom:26px}
+  .hero-meta{display:none}
+  .hero-bg{position:relative;inset:auto;aspect-ratio:5/4}
+  .hero-img{object-position:var(--pos-m)}
+  .hero-controls{left:var(--gutter);bottom:16px}
+}
+@media (max-width:560px){
+  .hero-inner{padding-top:24px}
+  .hero-sub br{display:none}
+  .hero-ctas{flex-direction:column;width:100%;gap:12px}
+  .hero-btn{width:100%;height:52px}
+  .hero-bg{aspect-ratio:1/1}
+  .hero-controls{height:40px;gap:12px;padding:0 14px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-slide,.hero-slide.is-active{transition:none}
+  .hero-shift{transform:none;transition:none}
+  .hero-btn,.hero-bars button,.hero-eyebrow,.hero-title,.hero-sub,.hero-meta{transition:none}
+  .hero-btn:hover,.hero-btn:active{transform:none}
+}
