@@ -70,7 +70,7 @@ export default function Franchise() {
       <section className="fr-hero">
         <div className="fr-hero-in">
           <div className="fr-hero-copy">
-            <p className="eyebrow">Partner with us</p>
+            <p className="eyebrow">Why partner with us</p>
             <h1>Open a Brunch Bakers in Your City</h1>
             <p>Join a pure-veg bakery brand people love. We give you the recipes, training and support, so you can focus on serving fresh bakes.</p>
             <div className="fr-btns">
